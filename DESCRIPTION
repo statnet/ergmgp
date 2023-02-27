@@ -1,0 +1,20 @@
+Package: ergmgp
+Version: 0.1
+Date: 2023-02-27
+Title:  Tools for Modeling ERGM Generating Processes
+Authors@R: c(
+   	   person("Carter T.", "Butts", role=c("aut","cre"), email="buttsc@uci.edu")
+           )
+Depends:
+    network (>= 1.15),
+    ergm (>= 3.10.1),
+    networkDynamic (>= 0.10),
+    parallel
+Imports:
+    statnet.common (>= 4.2.0)
+LinkingTo:
+    ergm
+Description:  Tools for continuous time processes with well-defined ERGM equilibria.
+License: GPL-3 + file LICENSE
+URL: https://statnet.org
+BugReports: https://github.com/statnet/ergmgp/issues

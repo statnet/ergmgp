@@ -1,0 +1,9 @@
+
+useDynLib(ergmgp)
+
+import(network,ergm,networkDynamic,parallel)
+importFrom("stats", "as.formula", "sd", "update")
+importFrom(statnet.common, statnetStartupMessage)
+
+# Export all names
+exportPattern(".")
