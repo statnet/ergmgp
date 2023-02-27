@@ -9,7 +9,7 @@ An overview of supported EGPs and pointers to other help pages can be obtained a
 To install from GitHub, first ensure that you have the `devtools` package installed and loaded. Then, type the following: 
 
 ```
-install_github("statnet/ergmgp", subdir="ergmgp")
+install_github("statnet/ergmgp")
 ```
 Alternately, cloning this repository and building/installing the package locally is another option. 
 
