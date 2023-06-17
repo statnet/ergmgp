@@ -1,13 +1,15 @@
 \name{simEGP}
 \alias{simEGP}
 \alias{simEGPTraj}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Simulate Trajectories from an ERGM Generating Process
 }
+
 \description{
 Given an \code{\link[ergm]{ergm}} formula, simulate trajectories from a continuous time graph process having the specified ERGM as a limiting distribution.  A number of different processes are supported, and termination may be specified either by phenomenological time or event counts.
 }
+
 \usage{
 simEGP(form, coef, events = 1, time = NULL, rate.factor = 1, 
     time.offset = 0, event.offset = 0, process = c("LERGM", "CRSAOM", 
@@ -24,7 +26,7 @@ simEGPTraj(form, coef, events = 1, time = NULL, checkpoints = 1,
     return.changetime = FALSE, return.history = FALSE, verbose = TRUE,
     trace.interval = 100, statsonly = FALSE, monitor = NULL) 
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{form}{
 an \code{\link[ergm]{ergm}} formula defining terms for the EGP; the left-hand side must be a network object, whose properties are used to determine the state space.  For the \code{CSTERGM} process, a list containing two such formulas must be used, with named elements \code{formation} (for the formation model) and \code{dissolution} (for the dissolution model).
@@ -93,6 +95,7 @@ optionally, an \code{\link[ergm]{ergm}} formula with additional statistics to tr
 additional arguments (currently unused).
 }
 }
+
 \details{
 An ERGM generating process (EGP) is a continuous time graph process with an equilibrium distribution having a known ERGM form.  See \code{\link{ergmgp}} for an overview of EGPs, including the specifications supported here.
 
@@ -106,27 +109,31 @@ Simulation itself follows the discrete event approach described in Butts (2023).
 
 To obtain equilibrium graph distributions from an EGP, it is generally (much) more efficient to use the \code{simulate} functions in the \code{\link[ergm]{ergm}} package: they employ MCMC algorithms that are unconstrained by the need to follow realistic trajectories, and that are optimized for rapid mixing.  (In particular, note that many systems can become \emph{kinetically trapped}, spending very long periods in metastable states that are far from equilibrium.  This can be a real-world phenomenon, but is not always desirable from a computational point of view.  Functions such as \code{simEGP} are intended to faithfully reproduce such dynamics, while MCMC algorithms are intended to avoid them.)  Comparison of late-phase draws from a \code{simERGMPot} trajectory with equilibrium ERGM draws can be used to evaluate convergence to equilibrium behavior (where desired); alternately, \code{simEGP} can be seeded with ERGM draws to follow trajectories from equilibrated states.  Consult the \code{ergm} package documentation for details.
 }
+
 \value{
   For \code{simEGP}, a network object containing the final graph state, with network attributes \code{Time}, \code{Events}, and \code{Potential} listing the time, event count, and ERGM potential at the end of the simulation interval.  See above for additional attributes that may be added if history retention is activated.  If \code{return.networkDynamic==TRUE}, then the return value is instead a \code{\link[networkDynamic]{networkDynamic}} object containing the event history as edge activity data; be aware that an edge will exist in this object if any corresponding edge is ever active, so the raw graph state should not be used to access the final system state.  Instead, use the \code{\link[networkDynamic]{network.extract}} method to query the network state at the desired time point.
   
   For \code{simERGMPotTraj}, a list containing the simulated trajectories.  These are either \emph{network.list} objects containing the networks at each checkpoint (with time, step, and potential attribute as described above), or else matrices of trace statistics (if \code{statsonly==TRUE}).  Note that the statistics are in any event included as an attribute to each network list, so the effect of \code{statsonly==TRUE} is simply not to retain the graph states.
 }
+
 \references{
 Butts, Carter T.  (2023).  \dQuote{Continuous Time Graph Processes with Known ERGM Equilibria: Contextual Review, Extensions, and Synthesis.} \emph{Journal of Mathematical Sociology}.  \doi{10.1080/0022250X.2023.2180001}
 }
+
 \author{
 Carter T. Butts \email{buttsc@uci.edu}
 }
+
 \note{
 Using \code{steps} to control trajectory termination will lead to biased samples (sometimes severely so); this is because transitions are not random times. If your goal is to obtain equilibrium draws (or draws en route thereto), use \code{time} to set the stopping point.  See \code{\link{EGPRateEst}} for a simple tool for calibrating simulation times.
 }
 
-
 \seealso{
 \code{\link{ergmgp}} for information on EGPs, \code{\link[ergm]{ergm}} for information on ERGM specifications, \code{\link{EGPHazard}}, \code{\link{EGPRateEst}}, \code{\link[networkDynamic]{networkDynamic}}
 }
+
 \examples{
-\dontrun{
+\donttest{
 #Small example of 2-ribbon generation
 n<-100
 set.seed(1331)
@@ -143,11 +150,12 @@ sim<-simEGPTraj(net~edges+kstar(2)+nsp(1:2),
     trajectories = 2, mc.cores = 1, log.sampling = TRUE, 
     process = "LERGM", verbose = TRUE) 
 length(sim)==2        #One entry per simulated trajectory
-par(mfrow=c(2,3))
+op<-par(mfrow=c(2,3))
 for(i in 1:6)         #Show the first trajectory
   plot(sim[[1]][[i]],main=paste("Time",round(sim[[1]][[i]]\%n\%"Time",2)))
 summary(sim[[2]]~edges+kstar(2))  #Show selected stats from the second
 attributes(sim[[1]])  #Show precomputed statistics
+par(op)
 
 #A simple example with statsonly
 set.seed(1331)
@@ -155,13 +163,13 @@ sim<-simEGPTraj(net~edges+esp(0), coef = c(log(2)-log(n), -1), time = 200,
     checkpoints = 25, process = "LERGM", statsonly = TRUE, 
     monitor = ~triangle)
 sim                   #Note the monitor stat
-par(mfrow=c(1,1))
+op<-par(mfrow=c(1,1))
 plot(sim[,"Time"], sim[,"edges"], type = "l")  #Time by edge count
 lines(sim[,"Time"], sim[,"esp0"], col = 2)     #Add ESP(0)s
+par(op)
 }
 }
 
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory.
 \keyword{ models }% use one of  RShowDoc("KEYWORDS")
 \keyword{ graphs }% __ONLY ONE__ keyword per line
+

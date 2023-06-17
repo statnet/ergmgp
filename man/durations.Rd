@@ -1,16 +1,19 @@
 \name{durations}
 \alias{durations}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Obtain Edge Spell Durations from an ERGM Generating Process Trajectory
 }
+
 \description{
 Given an input trajectory (in networkDynamic form, or network form with additional attributes), return the set of all edge durations (along with censoring information, if desired).
 }
+
 \usage{
 durations(net, censor = c("obs", "omit"), return.censoring = TRUE)
 }
-%- maybe also 'usage' for other objects documented here.
+
+
 \arguments{
   \item{net}{
 a \code{network} or \code{networkDynamic} object containing the trajectory information.
@@ -22,6 +25,7 @@ how should censoring be handled?  (Currently, only returning observed spell leng
 logical; return censoring information?
 }
 }
+
 \details{
 This function extracts information on edge spells (periods of time in which edges are present) from the input network, and returns the spell durations (optionally, together with censoring information).  The durations should not be assumed to be in any particular order; this function is generally invoked to examine duration distributions.
 
@@ -31,31 +35,21 @@ Spells may be left-censored, right-censored, or both.  \code{censor=="obs"} resu
 
 When using \code{durations} to estimate equilibrium duration distributions, it is important to bear in mind that EGP trajectories stopped by event count are not terminated at a random time, and hence will provide biased estimates.  Consider using \code{\link{EGPRateEst}} to calibrate a reasonable simulation time, and sampling with a temporal stopping rule.
 }
+
 \value{
 A vector of spell durations (order not guaranteed), or a matrix containing said durations and censoring indicators (0=uncensored, 1=right-censored, 2=left-censored, and 3=interval censored).
-%%  ~Describe the value returned
-%%  If it is a LIST, use
-%%  \item{comp1 }{Description of 'comp1'}
-%%  \item{comp2 }{Description of 'comp2'}
-%% ...
 }
-%\references{
-%% ~put references to the literature/web site here ~
-%}
+
 \author{
 Carter T. Butts \email{buttsc@uci.edu}
 }
-%\note{
-%%  ~~further notes~~
-%}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{simEGP}}
 }
+
 \examples{
-\dontrun{  #Examples are a bit slow, so not automatically run
+\donttest{  #Examples are a bit slow, so not automatically run
 
 #Generate a simple CD-CSTERGM trajectory; equilibrium mean outdegree
 #is 2, dissolution rate is 1/3
@@ -76,7 +70,7 @@ net <- simulate(network.initialize(n)~edges, coef=log(2/(n-3)))
 traj <- simEGP(net~edges, coef=list(formation=log(2/(n-3)*1/3),
     dissolution=log(1/3)), time=500, process="CDCSTERGM", 
     return.networkDynamic=TRUE, verbose=FALSE)
-slice <- traj %t% 499                     #Take a slice near the end
+slice <- traj \%t\% 499                     #Take a slice near the end
 network.edgecount(slice)/(n-1)            #Mean degree apx 2
 dur <- durations(traj)                    #Get durations
 head(dur)                                 #More of a mix
@@ -85,13 +79,8 @@ hist(dur[,1], xlab="Time", main="Duration Distribution")  #Visualize
 
 }
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
+
  \keyword{ manip }
  \keyword{ graphs }
  \keyword{ survival }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
+

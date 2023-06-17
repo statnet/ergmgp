@@ -1,19 +1,21 @@
 \name{EGPRateEst}
 \alias{EGPRateEst}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Estimate Event Rates for an ERGM Generating Process
 }
+
 \description{
 Given an EGP, estimate either the expected time required for a specified number of transitions to occur, or the expected number of transitions within a specified time period.
 }
+
 \usage{
 EGPRateEst(formula, coef, process = c("LERGM", "CRSAOM", "CI", "DS",
     "CDCSTERGM", "CFCSTERGM", "CSTERGM", "CTERGM"), time.target = NULL,
     event.target = NULL, reps = 25, cores = 1, rate.factor = 1, 
     verbose = FALSE, ...)
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{formula}{
 an ERGM formula for the EGP (or a list with \code{formation} and \code{dissolution} formulas, for \code{CSTERGM} processes).  The left-hand side is used as the initial state.
@@ -47,6 +49,7 @@ logical; show progress information?
 additional arguments to \code{\link{simEGP}}.
 }
 }
+
 \details{
 This function can be used to estimate the expected amount of time needed for a specific number of transitions to be realized (in which case \code{event.target} should be supplied) or the expected number of transition events occurring within a specified time period (in which case \code{time.target} should be supplied).  Either way, one of \code{time.target} and \code{event.target} must be given.  The function works by simulating \code{reps} trajectories (using \code{simEGP}) for the specified time/number of events, and returning the mean outcome (along with some other associated statistics).
 
@@ -54,24 +57,23 @@ A typical use case for this function is to calibrate the simulation time needed 
 
 Note that, at present, all trajectories have the same starting point (the network on the left-hand side of the input formula).  They are hence coupled by the initial condition (despite being otherwise independent).  When equilibrium estimates from short sequences are desired, it may be wise to call this function more than once with different starting networks and integrate the results.
 }
+
 \value{
 A vector containing the mean outcome (time or event count), its standard error, the standard deviation of the outcome, and the number of replicates used.
 }
+
 \references{
 Butts, Carter T.  (2023).  \dQuote{Continuous Time Graph Processes with Known ERGM Equilibria: Contextual Review, Extensions, and Synthesis.} \emph{Journal of Mathematical Sociology}.  \doi{10.1080/0022250X.2023.2180001}
 }
+
 \author{
 Carter T. Butts \email{buttsc@uci.edu}
 }
-%\note{
-%%  ~~further notes~~
-%}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{ergmgp}} for information on EGPs, \code{\link[ergm]{ergm}} for information on ERGM specifications, \code{\link{simEGP}}
 }
+
 \examples{
 #Simulate a small network with triadic dependence
 n <- 25
@@ -91,12 +93,8 @@ eevents <- EGPRateEst(net ~ edges + esp(0), coef = co, process = "LERGM",
 eevents   #Expectation should be close to 500
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
+
  \keyword{ graphs }
  \keyword{ models }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
+
+

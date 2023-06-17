@@ -3,10 +3,13 @@
 \alias{ergmgp-package}
 \alias{ergmgp}
 \alias{EGP_init}
+
 \title{Tools for Modeling ERGM Generating Processes}
+
 \description{
 Tools for simulation and analysis of continuous time graph processes with equilibria that can be described in exponential family random graph (ERGM) form.
 }
+
 \details{
 A random graph \eqn{G} on support \eqn{\mathcal{G}}{Supp(G)} is said to be expressed in exponential family random graph (ERGM) form when its probability mass function (pmf) is written as
 

@@ -1,17 +1,19 @@
 \name{EGPHazard}
 \alias{EGPHazard}
-%- Also NEED an '\alias' for EACH other topic documented here.
+
 \title{
 Calculate Transition Hazards for an ERGM Generating Process
 }
+
 \description{
 Given an EGP and an initial state, calculate the transition rates to one or more neighboring states.
 }
+
 \usage{
 EGPHazard(form, coef, toggles = NULL, rate.factor = 1, process = c("LERGM",
     "CRSAOM", "CI", "DS", "CDCSTERGM", "CFCSTERGM", "CSTERGM", "CTERGM"))
 }
-%- maybe also 'usage' for other objects documented here.
+
 \arguments{
   \item{form}{
 an ERGM formula for the EGP (or a list with \code{formation} and \code{dissolution} formulas, for \code{CSTERGM} processes).  The left-hand side is used as the current state when computing transition rates.
@@ -29,6 +31,7 @@ rate or pacing factor (sets the time scale).
 the ERGM generating process to use.
 }
 }
+
 \details{
 An ERGM generating process (EGP) is a continuous time graph process with an equilibrium distribution having a known ERGM form.  See \code{\link{ergmgp}} for an overview of EGPs, including the specifications supported here.
 
@@ -36,24 +39,23 @@ An ERGM generating process (EGP) is a continuous time graph process with an equi
 
 EGP specifications are as per \code{\link{simEGP}}.  Transition rates for all currently implemented EGPs follow the specifications of Butts (2023), with the trivial addition of a pacing constant for all families (which simply sets the timescale).
 }
+
 \value{
 a matrix containing the toggles, indicators for whether each event would have been a formation event, and the log event hazards (one row per toggle).
 }
+
 \references{
 Butts, Carter T.  (2023).  \dQuote{Continuous Time Graph Processes with Known ERGM Equilibria: Contextual Review, Extensions, and Synthesis.} \emph{Journal of Mathematical Sociology}.  \doi{10.1080/0022250X.2023.2180001}
 }
+
 \author{
 Carter T. Butts \email{buttsc@uci.edu}
 }
-%\note{
-%%  ~~further notes~~
-%}
-
-%% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
 \code{\link{ergmgp}} for information on EGPs, \code{\link[ergm]{ergm}} for information on ERGM specifications, \code{\link{simEGP}}
 }
+
 \examples{
 #Simulate a small network with triadic dependence
 n <- 25
@@ -78,12 +80,7 @@ a <- function(z){(z-min(z))/diff(range(z))}
 plot(net, edge.col = hsv(a(ldissr[,4])*0.6))  #Blue=fast, red=slow
 
 }
-% Add one or more standard keywords, see file 'KEYWORDS' in the
-% R documentation directory (show via RShowDoc("KEYWORDS")):
+
  \keyword{ graphs }
  \keyword{ models }
-% Use only one keyword per line.
-% For non-standard keywords, use \concept instead of \keyword:
-% \concept{ ~cpt1 }
-% \concept{ ~cpt2 }
-% Use only one concept per line.
+

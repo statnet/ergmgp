@@ -1,9 +1,10 @@
 Package: ergmgp
 Version: 0.1
-Date: 2023-02-27
+Date: 2023-06-09
 Title:  Tools for Modeling ERGM Generating Processes
 Authors@R: c(
-   	   person("Carter T.", "Butts", role=c("aut","cre"), email="buttsc@uci.edu")
+   	   person("Carter T.", "Butts", role=c("aut","cre"), email="buttsc@uci.edu"),
+   	   person(family="Statnet Commons", role=c("ctb"))
            )
 Depends:
     network (>= 1.15),
@@ -14,7 +15,7 @@ Imports:
     statnet.common (>= 4.2.0)
 LinkingTo:
     ergm
-Description:  Tools for continuous time processes with well-defined ERGM equilibria.
+Description:  Provides tools for simulating draws from continuous time processes with well-defined exponential family random graph (ERGM) equilibria, i.e. ERGM generating processes (EGPs).  A number of EGPs are supported, including the families identified in Butts (2023) <doi:10.1080/0022250X.2023.2180001>, as are functions for hazard calculation and timing calibration.
 License: GPL-3 + file LICENSE
 URL: https://statnet.org
 BugReports: https://github.com/statnet/ergmgp/issues
