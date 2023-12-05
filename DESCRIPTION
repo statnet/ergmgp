@@ -1,6 +1,6 @@
 Package: ergmgp
-Version: 0.1
-Date: 2023-06-09
+Version: 0.1-1
+Date: 2023-12-04
 Title:  Tools for Modeling ERGM Generating Processes
 Authors@R: c(
    	   person("Carter T.", "Butts", role=c("aut","cre"), email="buttsc@uci.edu"),

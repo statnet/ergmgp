@@ -4,7 +4,7 @@
 # simEGP.c
 #
 # copyright (c) 2023, Carter T. Butts <buttsc@uci.edu>
-# Last Modified 2/1/23
+# Last Modified 12/4/23
 # Licensed under the GNU General Public License version 3 or later.
 #
 # Part of the R/ergmgp package
@@ -153,7 +153,7 @@ SEXP simEGP_R(SEXP segp, SEXP mstate, SEXP scoef, SEXP scooffset, SEXP stmax, SE
     }else{                      /*Use the one we were given*/
       PROTECT(sltt=coerceVector(slttoff,REALSXP)); pc++;
       if(LENGTH(sltt)!=n_nodes*n_nodes){
-        error("We were given a last toggle time matrix of total length %ld, but it should have been %ld.  Stopping.\n", LENGTH(sltt), n_nodes*n_nodes);
+        error("We were given a last toggle time matrix of total length %ld, but it should have been %ld.  Stopping.\n", (long)LENGTH(sltt), (long)(n_nodes*n_nodes));
       }
       ltt=REAL(sltt);
     }
