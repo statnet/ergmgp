@@ -23,6 +23,12 @@ install_github("statnet/ergmgp")
 ```
 Alternately, cloning this repository and building/installing the package locally is another option. 
 
+
+## Code of Conduct
+
+Please note that the **ergmgp** project is released with a [Contributor Code of Conduct](https://contributor-covenant.org/version/2/1/CODE_OF_CONDUCT.html). By contributing to this project, you agree to abide by its terms.
+
+
 ## References
 
 Butts, Carter T.  (2023).  ``Continuous Time Graph Processes with Known ERGM Equilibria: Contextual Review, Extensions, and Synthesis.'' *Journal of Mathematical Sociology*.  DOI: 10.1080/0022250X.2023.2180001  [[arXiv version](https://arxiv.org/abs/2203.06948)]
