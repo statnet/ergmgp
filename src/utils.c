@@ -4,7 +4,7 @@
 # utils.c
 #
 # copyright (c) 2023, Carter T. Butts <buttsc@uci.edu>
-# Last Modified 2/8/23
+# Last Modified 10/8/24
 # Licensed under the GNU General Public License version 3 or later.
 # Portions taken from the sna library by Carter T. Butts,
 #  (self-licensed under GPL).
@@ -295,8 +295,9 @@ return head;
 
 element *pushCalloc(element *head, double val, void *dp)
 /*Adds element with value val to the stack, returning the head 
-pointer.  This function uses Calloc for memory allocation, and it must be
-manually deallocated with Free.  Do not use with stackdel et al!*/
+pointer. This function uses R_alloc for memory allocation, so
+memory allocated is automatically freed by R at the end of the .C
+call.*/
 {
 element *newnode;
 
